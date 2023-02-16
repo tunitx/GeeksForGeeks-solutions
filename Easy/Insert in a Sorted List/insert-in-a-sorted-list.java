@@ -13,7 +13,7 @@ class Node{
     
 }
 class GFG{
-	static void printList(Node node) 
+	static void printList(Node node)
 	{ 
 		while (node != null) 
 		{ 
@@ -66,6 +66,7 @@ class Solution {
     Node sortedInsert(Node head, int key) {
         // Add your code here.
          Node curr = head;
+// 	    Node head = 
         Node temp = new Node(key);
         if( curr.data > key){
             temp.next = head;
