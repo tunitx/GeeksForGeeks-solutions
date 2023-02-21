@@ -96,6 +96,9 @@ class Solution {
         if(head == null || head.next == null){
             return head;
         }
+        // vahiyaat question by god itna dimaag kharab kiya
+        //initial links ka dekh lio vahi pe gadbad ki thi last baar tune baaki u were good in the loop
+        // date : 21 feb 2023
        
         Node curr = head.next.next;
         Node prev = head;
