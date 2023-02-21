@@ -56,17 +56,20 @@ class Solution
     static ArrayList <Integer> max_of_subarrays(int arr[], int n, int k)
     {
         // Your code here
+        //this is NOT exactly O(n) solution but chalta hai
+        //sliding window on arrays for future reference 
+        //DOS: 21 feb 2023
         ArrayList<Integer> list = new ArrayList<>();
         int max = Integer.MIN_VALUE;
         for(int i =0; i<k; i++){
             max = Math.max(max, arr[i]);
         }
+        
         int low =0;
         list.add(max);
         for(int i = k; i<arr.length; i++){
             if(arr[low] == max){
                 max = Integer.MIN_VALUE;
-                // low++;
                 int len = low+1;
                 while(len<=i){
                     max = Math.max(max, arr[len]);
