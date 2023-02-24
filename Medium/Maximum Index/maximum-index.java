@@ -26,12 +26,17 @@ class Solution {
 
     int maxIndexDiff(int arr[], int n) {
         // code here
+        //Date : 24 feb 2023
+        //so this solution works on the idea of storing maximum elements starting 
+        //from last index till first index in an auxilary array max[j];
         int [] max = new int[n];
         int maxE= Integer.MIN_VALUE;
         for(int i =n-1; i>=0; i--){
             maxE = Math.max(maxE, arr[i]);
             max[i] = maxE;
         }
+        //then we check for the condition max[j]>=arr[i], if true, then we just calclulate 
+        //the max length, if not true, we gon check backwards in max[j] array by doing j-- only.
         int i =0, j =arr.length-1;
         int maxLen = 0;
         while(i<arr.length){
