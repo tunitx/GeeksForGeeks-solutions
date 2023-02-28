@@ -93,25 +93,45 @@ class Solution {
     public Node pairwiseSwap(Node head)
     {
         // code here
-        if(head == null || head.next == null){
-            return head;
-        }
-        // vahiyaat question by god itna dimaag kharab kiya
-        //initial links ka dekh lio vahi pe gadbad ki thi last baar tune baaki u were good in the loop
-        // date : 21 feb 2023
-       
-        Node curr = head.next.next;
-        Node prev = head;
-        head = head.next;
-        head.next = prev;
-        while(curr!=null && curr.next!=null){
-            Node temp = curr.next.next;
-            prev.next =curr.next;
-            prev = curr;
-            curr.next.next = curr;
-            curr = temp;
-        }
-        prev.next = curr;
-        return head;
+        //  Node curr = head.next.next;
+        // Node prev = head;
+        // head = head.next;
+        // head.next = prev;
+        // while(curr!=null && curr.next!=null){
+        //     Node temp = curr.next.next;
+        //     prev.next =curr.next;
+        //     prev = curr;
+        //     curr.next.next = curr;
+        //     curr = temp;
+        // }
+        // prev.next = curr;
+        // return head;
+        
+
+// Node temp = head.next.next;
+// Node prev = head;
+// Node curr = head;
+// head = curr.next;
+// curr.next.next = curr;
+// curr = temp;
+if(head == null || head.next == null){
+    return head;
+}
+Node curr = head.next.next;
+Node prev = head;
+head = head.next;
+head.next = prev;
+
+while(curr!=null && curr.next != null){
+Node temp =curr.next.next;
+prev.next = curr.next;
+prev = curr;
+curr.next.next = curr;
+curr = temp;
+}
+prev.next = curr;
+return head;
+
+
     }
 }
