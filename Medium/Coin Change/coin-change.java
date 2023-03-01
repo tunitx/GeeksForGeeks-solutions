@@ -25,32 +25,31 @@ class GfG {
 // User function Template for Java
 
 class Solution {
-    public long count(int coin[], int N, int sum) {
+    public long count(int coins[], int N, int sum) {
         // code here.
-         Arrays.sort(coin);
-
-        long [][] mat = new long[coin.length][sum+1];
-        for(int i =1; i<=sum; i++){
-            if(i%coin[0]==0){
-                mat[0][i]=1;
+        long [][] mat = new long [coins.length][sum+1];
+        // Arrays.sort(coins);
+        for(int i =0; i<=sum; i++){
+            if(i%coins[0]==0){
+                mat[0][i] =1;
             }
             else{
-                mat[0][i]= 0;
+                mat[0][i] = 0;
             }
         }
-        mat[0][0] =1;
-        for(int i =1; i<coin.length; i++){
-            mat[i][0] = 1;
+        // mat[0][0] =1;
+        for(int i =1; i<coins.length; i++){
+            mat[i][0] =1;
             for(int j =0; j<=sum; j++){
-                if(coin[i]>j){
+                if(coins[i]>j){
                     mat[i][j] = mat[i-1][j];
                 }
                 else{
-                    mat[i][j] = mat[i-1][j] +mat[i][j-coin[i]];
+                    mat[i][j] = mat[i][j-coins[i]] +mat[i-1][j];
                 }
             }
-
         }
-        return mat[coin.length-1][sum];
+        return mat[coins.length-1][sum];
+        
     }
 }
