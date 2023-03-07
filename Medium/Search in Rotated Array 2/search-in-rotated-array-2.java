@@ -91,12 +91,6 @@ class Solution {
         return false;
     }
      public static int findPivotBinarySearch(int[] array) {
-	
-	        if (array == null || array.length == 0) {
-	            return -1;
-	        }
-	
-	         
 	        if (array.length == 1 || array[0] < array[array.length - 1]) {
 	            return 0;
       }
