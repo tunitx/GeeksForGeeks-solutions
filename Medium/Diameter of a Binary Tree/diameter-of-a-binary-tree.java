@@ -117,6 +117,7 @@ class GfG {
 
 class Solution {
     // Function to return the diameter of a Binary Tree.
+    //date : 25 march 2023
     int res = Integer.MIN_VALUE;
     int diameter(Node root) {
         // Your code here
