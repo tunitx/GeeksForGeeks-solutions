@@ -27,8 +27,9 @@ class GfG {
 class Solution {
     public long count(int coins[], int N, int sum) {
         // code here.
+        //2nd submission 
+        //date: 1 march 2023
         long [][] mat = new long [coins.length][sum+1];
-        // Arrays.sort(coins);
         for(int i =0; i<=sum; i++){
             if(i%coins[0]==0){
                 mat[0][i] =1;
@@ -37,7 +38,6 @@ class Solution {
                 mat[0][i] = 0;
             }
         }
-        // mat[0][0] =1;
         for(int i =1; i<coins.length; i++){
             mat[i][0] =1;
             for(int j =0; j<=sum; j++){
