@@ -28,6 +28,9 @@ class RodCutting {
 class Solution{
     public int cutRod(int price[], int n) {
         //code here
+        //date : 12th june 2023
+        //dp based top bottom approach solution
+        //works on the concept of usual dp take & notTake algorithm
         var index = 0;
         var rodLen = price.length;
         var dp = new int [n][n+1];
@@ -40,7 +43,7 @@ class Solution{
     }
     public static int helper(int index, int rodLen, int [] price, int n , int [][] dp){
         //base conditions
-        if(rodLen ==0){
+        if(rodLen ==0 || rodLen <0){
             return 0;
         }
         if(index == n){
@@ -50,6 +53,9 @@ class Solution{
         
         int notTake = helper(index+1, rodLen, price, n, dp);
         int take = 0;
+        //****** imp condition to be used always else the code breaks here *********
+        //eg = rodLen = 5 & index = 5 at some recursive call, then new rodLen = 5-(5+1) = -1, 
+        //which is invalid rodLen so we discard such values which dont give us a appropriate rodLen
         if(rodLen>=(index+1)){
               take = price[index] + helper(index, rodLen-(index+1), price, n, dp);
         }
