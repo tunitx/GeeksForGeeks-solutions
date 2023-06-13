@@ -126,53 +126,28 @@ class Tree
     ArrayList<Integer> leftView(Node root)
     {
       // Your code here
-    //   ArrayList<Integer> list = new ArrayList<>();
-    //   Queue<Node> q = new LinkedList<>();
-    //   q.add(root);
-    //   q.add(null);
-    //   boolean check = true;
-    //   while(!q.isEmpty()){
-    //     //   Node curr = q.poll();
-    //     //   list.add(curr.data);
-    //       while(!q.isEmpty() && q.element()!=null){
-    //           Node curr = q.poll();
-    //           if(check){
-    //               list.add(curr.data);
-    //               check = false;
-    //           }
-    //           if(curr.left!=null){
-    //               q.add(curr.left);
-    //           }
-    //           if(curr.right!=null){
-    //               q.add(curr.right);
-    //           }
-    //       }
-    //       q.poll();
-    //       if(q.isEmpty()){
-    //           break;
-    //       }
-    //       q.add(null);
-    //       check = true;
-    //   }
-    //   return list;
-      ArrayList<Integer> list = new ArrayList<>();
+        ArrayList<Integer> list = new ArrayList<>();
       Queue<Node> q = new LinkedList<>();
       q.add(root);
       while(!q.isEmpty()){
           int count = q.size();
           for(int i =0; i<count; i++){
               Node curr = q.poll();
-              if(i==0 && curr!=null){
+              if(curr==null){
+                  break;
+              }
+              if(i==0 ){
                   list.add(curr.data);
               }
-              if(curr!=null && curr.left!=null){
+              if(curr.left!=null){
                   q.add(curr.left);
               }
-              if(curr!= null && curr.right!=null){
+              if( curr.right!=null){
                   q.add(curr.right);
               }
           }
       }
       return list;
     }
+    
 }
