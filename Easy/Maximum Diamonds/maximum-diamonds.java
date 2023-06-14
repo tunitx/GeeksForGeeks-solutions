@@ -34,18 +34,15 @@ class GFG {
 class Solution {
     static long maxDiamonds(int[] A, int N, int k) {
         // code here
+        //date : 14th june 2023
         var pq = new PriorityQueue<Integer>(Collections.reverseOrder());
-        for(int i =0; i<N; i++){
-            pq.add(A[i]);
-        }
+        for(var i : A) pq.add(i);
         long ans = 0;
-        while(k!=0){
-            int curr = pq.poll();
+        while(k--!=0){
+            var curr = pq.poll();
             ans+=curr;
             pq.add(curr/2);
-            k--;
         }
         return ans;
-        
     }
 };
