@@ -26,29 +26,41 @@ class Solution {
 
     int maxIndexDiff(int arr[], int n) {
         // code here
-        //Date : 24 feb 2023
-        //so this solution works on the idea of storing maximum elements starting 
-        //from last index till first index in an auxilary array max[j];
-        int [] max = new int[n];
-        int maxE= Integer.MIN_VALUE;
-        for(int i =n-1; i>=0; i--){
-            maxE = Math.max(maxE, arr[i]);
-            max[i] = maxE;
-        }
-        //then we check for the condition max[j]>=arr[i], if true, then we just calclulate 
-        //the max length, if not true, we gon check backwards in max[j] array by doing j-- only.
-        int i =0, j =arr.length-1;
-        int maxLen = 0;
-        while(i<arr.length){
-            if(max[j]>=arr[i]){
-                maxLen = Math.max(maxLen, j-i);
-                j=n-1;
-                i++;
-            }
-            else{
-                j--;
-            }
-        }
-        return maxLen;
+         int maxDiff;
+        
+         int RMax[] =  new int[n];
+         int LMin[] = new int[n];
+         
+         
+         LMin[0] =  arr[0];
+         for(int i =1; i<n;i++){
+             LMin[i] = Math.min(LMin[i-1], arr[i]);
+         }
+         
+         
+         
+         RMax[n-1] = arr[n-1];
+         for(int j = n-2; j>=0; j--){
+             RMax[j] =  Math.max(RMax[j+1], arr[j]);
+         }
+         
+         
+         int i =  0;
+         int j = 0;
+         
+         maxDiff  =  0;
+         
+         while(i<n && j<n){
+             if(LMin[i]<=RMax[j]){
+                int diff =  j-i;
+                maxDiff = Math.max(maxDiff, diff);
+                j++;
+             }
+             else{
+                 i++;
+             }
+         }
+         
+         return maxDiff;
     }
 }
