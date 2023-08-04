@@ -41,6 +41,8 @@ class GFG
 // } Driver Code Ends
 
 
+
+
 //User function Template for Java
 
 class Solution
@@ -48,7 +50,9 @@ class Solution
     static void reverse(Stack<Integer> s)
     {
         // add your code here
-           int [] arr = new int[s.size()];
+        //🤣🤣🤣 bruh recursive solution likhne mein gaand toh lagti hai ngl
+        //date : 3 March 2023
+        int [] arr = new int[s.size()];
         int i =0;
         reverseTheStack(s, arr, i);
     }
@@ -64,10 +68,6 @@ class Solution
          i++;
         int k = reverseTheStack(stack, arr, i);
 //         System.out.println(arr[i]);
-
-
-
-
         stack.push(arr[k]);
         //  System.out.println(stack.peek());
          return k+1;
