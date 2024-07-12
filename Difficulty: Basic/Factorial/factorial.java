@@ -23,7 +23,13 @@ class Solution{
     static long factorial(int N){
         // code here
         if(N==0) return 1;
-        return helper(N);
+        // return helper(N);
+        long ans = 1;
+        while(N>0){
+            ans = ans*N;
+            N--;
+        }
+        return ans;
     }
     static long helper(int n){
         if(n==1) return n;
