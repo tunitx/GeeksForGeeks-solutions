@@ -28,15 +28,29 @@ class GFG{
 // } Driver Code Ends
 
 
+
+
 //User function Template for Java
 
 class Solution{
     int dp [];
     public int minimumEnergy(int arr[],int N){
+        //date : 24th august 2024
         //code here
-        dp = new int[N];
-        Arrays.fill(dp, -1);
-        return helper(N-1, arr);
+        // dp = new int[N];
+        // Arrays.fill(dp, -1);
+        // return helper(N-1, arr);
+        
+        dp= new int [N];
+        Arrays.fill(dp,Integer.MAX_VALUE);
+        dp[0] = 0;
+        
+        for(int i =0; i<dp.length-1; i++){
+            dp[i+1] = Math.min(dp[i+1], dp[i]+Math.abs(arr[i]-arr[i+1]));
+            if(i<dp.length-2)
+            dp[i+2] = Math.min(dp[i+2], dp[i]+Math.abs(arr[i]-arr[i+2]));
+        }
+        return dp[N-1];
     }
     public int helper(int curr , int [] arr){
         if(curr==0) return 0;
