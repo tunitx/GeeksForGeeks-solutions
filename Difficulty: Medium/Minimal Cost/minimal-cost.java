@@ -12,20 +12,21 @@ class Solution {
     int dp [];
     public int minimizeCost(int arr[], int k) {
         // code here
-        // date : 24th august 2024
+        // date : 14 sept 2024
+        int n = arr.length;
         dp = new int [arr.length];
         Arrays.fill(dp, -1);
-        return helper(0, k, arr);
+        return helper(0, k, arr, n);
     }
-    public int helper(int i, int k, int [] arr){
-        if(i==arr.length-1) return 0;
+    
+    public int helper(int i, int k, int [] arr, int n){
+        if(i== n-1) return 0;
         if(dp[i]!=-1) return dp[i];
         
         int res = Integer.MAX_VALUE;
-        for(int j =1; j<=k; j++){
-            if(i+j<arr.length){
-                int temp = Math.abs(arr[i]-arr[i+j]) + helper(i+j, k, arr);
-                res = Math.min(res, temp);
+        for(int j=1; j<=k; j++){
+            if(i+j<n){
+                res = Math.min(res, Math.abs(arr[i] - arr[i+j]) + helper(i+j, k, arr, n));
             }
         }
         return dp[i] = res;
