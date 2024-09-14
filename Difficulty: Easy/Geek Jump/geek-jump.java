@@ -28,40 +28,38 @@ class GFG{
 // } Driver Code Ends
 
 
-
-
 //User function Template for Java
 
 class Solution{
+    
     int dp [];
     public int minimumEnergy(int arr[],int N){
-        //date : 24th august 2024
         //code here
+        // date : 14 sept 2024
         // dp = new int[N];
         // Arrays.fill(dp, -1);
-        // return helper(N-1, arr);
+        // return helper(0, arr, N);
         
-        dp= new int [N];
-        Arrays.fill(dp,Integer.MAX_VALUE);
+        dp = new int[N];
+        Arrays.fill(dp, Integer.MAX_VALUE);
         dp[0] = 0;
         
-        for(int i =0; i<dp.length-1; i++){
-            dp[i+1] = Math.min(dp[i+1], dp[i]+Math.abs(arr[i]-arr[i+1]));
-            if(i<dp.length-2)
-            dp[i+2] = Math.min(dp[i+2], dp[i]+Math.abs(arr[i]-arr[i+2]));
+        for(int i =0; i<N-1; i++){
+            dp[i+1] = Math.min(dp[i+1], dp[i] + Math.abs(arr[i+1] - arr[i]));
+            if(i+2<N) 
+                dp[i+2] = Math.min(dp[i+2], dp[i] + Math.abs(arr[i+2] - arr[i]));
         }
         return dp[N-1];
     }
-    public int helper(int curr , int [] arr){
-        if(curr==0) return 0;
-        if(dp[curr]!=-1) return dp[curr];
+    
+    public int helper(int i, int [] arr, int N){
+        if(i>=N-1) return 0;
+        if(dp[i]!=-1) return dp[i];
         
-        
-        int res1 = Math.abs(arr[curr]-arr[curr-1]) + helper(curr-1, arr);
+        int res1 = Math.abs(arr[i] - arr[i+1]) + helper(i+1, arr, N);
         int res2 = Integer.MAX_VALUE;
-        if(curr>1){
-            res2 = Math.abs(arr[curr]-arr[curr-2]) + helper(curr-2,  arr);
-        }
-        return dp[curr] = Math.min(res1, res2);
+        if(i+2<N) res2 = Math.abs(arr[i] - arr[i+2]) + helper(i+2, arr, N);
+        
+        return dp[i] = Math.min(res1, res2);
     }
 }
