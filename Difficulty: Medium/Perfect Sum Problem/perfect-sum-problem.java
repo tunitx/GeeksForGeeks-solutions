@@ -26,21 +26,28 @@ class GfG
 
 
 class Solution{
-    static int find(int[] arr,int n,int sum,int[][] dp){
-        if(sum==0) return 1;
-        if(n==-1||sum<0) return 0;
-        if(dp[n][sum]!=-1)  return dp[n][sum]; 
-        if(arr[n]==0) return dp[n][sum]=find(arr,n-1,sum,dp);
-        return dp[n][sum]=(find(arr,n-1,sum-arr[n],dp)+find(arr,n-1,sum,dp))%1000000007;
-    }
-    public int perfectSum(int arr[],int n, int sum) 
-    { 
-        // Your code goes here
-        int[][] dp=new int[n][sum+1];
-        for(int[] t:dp) Arrays.fill(t,-1);
-        int c=0;
-        for(int a:arr) if(a==0) c++;
-        int k=find(arr,n-1,sum,dp);
-        return k*(1<<c);
-    } 
-}
+
+    int dp [][];
+	public int perfectSum(int arr[],int n, int sum) 
+	{ 
+	    // Your code goes here
+	    dp = new int [n][sum+1];
+	    for(int row [] : dp) Arrays.fill(row, -1);
+	    
+	    int k = helper(0, sum, arr, n);
+	    int count =0;
+	    for(int i : arr) if(i==0) count ++;
+	    return k*(1<<count);
+	} 
+	public int helper(int i, int sum, int arr [], int n){
+	    if(sum == 0) return 1;
+	    if(i == n || sum<0 ) return 0;
+	    if(dp[i][sum]!=-1) return dp[i][sum];
+	    
+	    if(arr[i] == 0) return helper(i+1, sum, arr, n);
+	    int res1 = helper(i+1, sum, arr, n);
+	    int res2 = helper(i+1, sum - arr[i], arr, n);
+	    
+	    return dp[i][sum]  = (res1 + res2)%1000000007 ;
+	}
+} 
