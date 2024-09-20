@@ -61,27 +61,48 @@ class GFG {
 
 
 class Solution {
-    static int find(int[] arr,int n,int s1,int[][] dp){
-        if(s1==0) return 1;
-        if(n==-1||s1<0) return 0;
-        if(dp[n][s1]!=-1) return dp[n][s1];
-        if(arr[n]==0) return dp[n][s1]=find(arr,n-1,s1,dp);
-        return dp[n][s1]=(find(arr,n-1,s1-arr[n],dp)+find(arr,n-1,s1,dp))%1000000007;
-    }
+    static int mod = 1000000007;
+    static int dp [][];
     public static int countPartitions(int n, int d, int[] arr) {
         // code here
-        int sum=0,c=0;
-        for(int a:arr){ sum+=a;  if(a==0) c++;  }
-        if(sum<d) return 0;
-        if((sum-d)%2==1) return 0;
-        sum=(sum-d)/2;
-        int[][] dp=new int[n][sum+1];
-        for(int[] t: dp) Arrays.fill(t,-1);
-        int ans=find(arr,n-1,sum,dp);
-        while(c-->0)  ans=(ans<<1)%1000000007;
-        return ans;
+        // date : 20 sept 2024
+        
+        int totalSum = 0, zeros =0, target =0;
+        
+        for(int i : arr){
+            totalSum +=i;
+            if(i==0) zeros ++;
+        } 
+        
+        if((totalSum+d)%2!=0) return 0;
+        
+        target = (totalSum +d)/2;
+        
+        dp = new int [n][target+1];
+        
+        for(int [] row : dp) Arrays.fill(row, -1);
+        
+        int k = helper(0, target, arr);
+        
+        while(zeros-->0) k = (k<<1)%mod;
+        
+        return k;
+        
+    }
+    
+    public static int helper(int i, int sum, int [] arr){
+        if(sum ==0) return 1;
+        if(i==arr.length) return 0;
+        if(dp[i][sum]!=-1) return dp[i][sum];
+        
+        if(arr[i]==0) return helper(i+1, sum , arr);
+        
+        int res1 = helper(i+1, sum, arr);
+        int res2 =0;
+        if(sum>=arr[i])
+            res2 = helper(i+1, sum - arr[i], arr);
+        
+        return dp[i][sum] = (res1 + res2)%mod;
     }
 }
-
-
         
